@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
-
-const initialCart = [
-	{ id: '1', name: 'Herbal Tea', price: 10.99, quantity: 1 },
-	{ id: '2', name: 'Aloe Vera Gel', price: 15.49, quantity: 2 },
-];
+import React from 'react';
+import { View, Text, FlatList, Button, TouchableOpacity } from 'react-native';
+import { useCart } from '@/context/CartContext';
 
 export default function Cart() {
-	const [cart, setCart] = useState(initialCart);
-
-	const removeFromCart = (id: string) => {
-		setCart(cart.filter(item => item.id !== id));
-	};
+	const { cart, removeFromCart } = useCart();
 
 	const calculateTotal = () => {
 		return cart
@@ -20,36 +12,41 @@ export default function Cart() {
 	};
 
 	return (
-		<View style={styles.container}>
+		<View className="flex-1 bg-white p-4">
+			{/* Cart Items */}
 			<FlatList
 				data={cart}
 				keyExtractor={item => item.id}
 				renderItem={({ item }) => (
-					<View style={styles.cartItem}>
-						<Text style={styles.itemName}>{item.name}</Text>
-						<Text style={styles.itemPrice}>
+					<View className="mb-4 p-4 border border-gray-300 rounded-lg">
+						<Text className="text-lg font-bold text-gray-800">{item.name}</Text>
+						<Text className="text-base text-gray-600 mb-2">
 							${item.price.toFixed(2)} x {item.quantity}
 						</Text>
-						<Button title="Remove" onPress={() => removeFromCart(item.id)} />
+						<TouchableOpacity
+							className="bg-red-500 rounded-lg p-2"
+							onPress={() => removeFromCart(item.id)}
+						>
+							<Text className="text-white text-center">Remove</Text>
+						</TouchableOpacity>
 					</View>
 				)}
 			/>
-			<Text style={styles.total}>Total: ${calculateTotal()}</Text>
-			<Button title="Checkout" onPress={() => alert('Proceed to Checkout')} />
+
+			{/* Total Section */}
+			<Text className="text-xl font-bold text-gray-800 mt-4">
+				Total: ${calculateTotal()}
+			</Text>
+
+			{/* Checkout Button */}
+			<TouchableOpacity
+				className="bg-green-500 rounded-lg p-4 mt-4"
+				onPress={() => alert('Proceed to Checkout')}
+			>
+				<Text className="text-white text-center text-lg font-bold">
+					Checkout
+				</Text>
+			</TouchableOpacity>
 		</View>
 	);
 }
-
-const styles = StyleSheet.create({
-	container: { flex: 1, padding: 16, backgroundColor: '#fff' },
-	cartItem: {
-		marginBottom: 16,
-		padding: 16,
-		borderWidth: 1,
-		borderColor: '#ddd',
-		borderRadius: 8,
-	},
-	itemName: { fontSize: 18, fontWeight: 'bold' },
-	itemPrice: { fontSize: 16, color: '#555', marginBottom: 8 },
-	total: { fontSize: 20, fontWeight: 'bold', marginVertical: 16 },
-});
