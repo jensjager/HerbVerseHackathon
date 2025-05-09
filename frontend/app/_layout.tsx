@@ -1,21 +1,12 @@
-import { Stack } from 'expo-router';
+import { Slot } from 'expo-router';
+import { ClerkProvider } from '@clerk/clerk-expo';
+import { tokenCache } from '@clerk/clerk-expo/token-cache';
 import './global.css';
-
-const isLoggedIn = true;
 
 export default function RootLayout() {
 	return (
-		<Stack
-			screenOptions={{
-				headerShown: false,
-			}}
-		>
-			<Stack.Protected guard={!isLoggedIn}>
-				<Stack.Screen name="login" />
-			</Stack.Protected>
-			<Stack.Protected guard={isLoggedIn}>
-				<Stack.Screen name="(auth)" />
-			</Stack.Protected>
-		</Stack>
+		<ClerkProvider tokenCache={tokenCache}>
+			<Slot />
+		</ClerkProvider>
 	);
 }

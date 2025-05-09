@@ -31,7 +31,7 @@ const products = [
 	},
 ];
 
-export default function ProductList() {
+export default function Search() {
 	const router = useRouter();
 
 	return (
