@@ -14,12 +14,6 @@ export default function Index() {
 				Your gateway to natural wellness
 			</Text>
 			<View className="space-y-4">
-				<SearchBar
-					onPress={() => {
-						router.push('/search');
-					}}
-					placeholder="Search for a movie"
-				/>
 				<Button
 					title="View Cart"
 					onPress={() => router.push('/cart')}
