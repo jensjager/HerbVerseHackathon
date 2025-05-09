@@ -1,12 +1,18 @@
-import { Redirect, Stack } from 'expo-router';
+import { Redirect, Stack, useRouter } from 'expo-router';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import { ActivityIndicator, View } from 'react-native';
-
-const isVendor = false;
+import { useEffect } from 'react';
 
 export default function ProtectedLayout() {
 	const { isSignedIn, isLoaded } = useAuth();
 	const { user } = useUser();
+	const router = useRouter();
+
+	useEffect(() => {
+		if (user?.unsafeMetadata?.role) {
+			router.replace('/profile');
+		}
+	}, [user?.unsafeMetadata?.role]);
 
 	if (!isLoaded) {
 		return (
@@ -20,10 +26,11 @@ export default function ProtectedLayout() {
 		return <Redirect href="/login" />;
 	}
 
-	const isVendor = user?.publicMetadata?.role === 'vendor';
+	const isVendor = user?.unsafeMetadata?.role === 'vendor';
 
 	return (
 		<Stack
+			key={isVendor ? 'vendor' : 'customer'}
 			screenOptions={{
 				headerShown: false,
 			}}
