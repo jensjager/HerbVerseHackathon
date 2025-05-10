@@ -1,50 +1,113 @@
-# Welcome to your Expo app 👋
+# HerbVerse Hackathon Project 🌿
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+HerbVerse is a modern e-commerce platform for herbal products, designed to connect customers with natural wellness solutions. This project was built using **Expo**, **React Native**, and **Node.js** with a PostgreSQL database.
 
-## Get started
+---
 
-1. Install dependencies
+## App Architecture
 
+The app follows a **modern full-stack architecture**:
+
+1. **Frontend**:
+
+   - Built with **React Native** and **Expo** for cross-platform compatibility (iOS, Android, and Web).
+   - Uses **Expo Router** for file-based navigation.
+   - **Tailwind CSS** (via NativeWind) for styling.
+   - **Clerk** for authentication and user management.
+
+2. **Backend**:
+
+   - Built with **Node.js** and **Express.js**.
+   - **PostgreSQL** as the database, managed via **docker-compose**.
+   - RESTful API endpoints for products, orders, and inventory.
+
+3. **State Management**:
+
+   - Context API is used for managing the cart state.
+
+4. **Deployment**:
+   - Backend runs in a Dockerized environment.
+   - Frontend is designed for deployment on Expo Go or as a standalone app.
+
+---
+
+## Key Features
+
+### Customer Features:
+
+- **Product Browsing**: Explore a wide range of herbal products.
+- **Search Functionality**: Search for products by name, category, or seller.
+- **Cart Management**: Add, update, and remove items from the cart.
+- **Checkout**: View the total price and proceed to checkout. (not implemented)
+
+### Vendor Features:
+
+- **Inventory Management**: Add, edit, and view inventory items.
+- **Order Management**: View and manage customer orders.
+- **Role Switching**: Switch between customer and vendor roles.
+
+### Shared Features:
+
+- **Authentication**: Secure login and registration using Clerk.
+- **Profile Management**: View and update user details.
+
+---
+
+## Code/Project Structure
+
+### Frontend
+
+The frontend is organized into the following directories:
+
+<pre>
+frontend/ 
+├── api/                 # API functions for products, orders, and inventory
+├── app/                 # Main application directory
+│   ├── (auth)/          # Authentication screens (login, register)
+│   ├── (protected)/     # Protected screens for customers and vendors
+│   └── _layout.tsx      # Root layout for the app
+├── components/          # Reusable UI components (e.g., SearchBar, QuantityPicker)
+├── context/             # Context API for managing global state (e.g., CartContext)
+├── assets/              # Static assets (images, fonts)
+└── package.json         # Project dependencies and scripts
+</pre>
+
+
+### Backend
+The backend is organized into the following directories:
+
+<pre>
+backend/
+├── src/
+│   ├── db/                 # Database connection and migrations
+│   ├── routes/             # API routes for products, orders, and inventory
+│   └── index.ts            # Main server entry point
+├── Dockerfile              # Docker configuration for the backend
+├── docker-compose.yml      # Docker Compose configuration for backend and database
+└── package.json            # Project dependencies and scripts
+</pre>
+
+
+---
+
+## How to Run the Project
+
+### Prerequisites
+- Node.js and npm installed
+
+### Frontend
+1. Navigate to the `frontend` directory:
+   ```bash
+   cd frontend
+
+2. Install dependencies:
    ```bash
    npm install
-   ```
 
-2. Start the app
-
+2. Start the app:
    ```bash
-    npx expo start
-   ```
+   npm run start
 
-In the output, you'll find options to open the app in a
+### Backend
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Not working! Didn't have time to finish 😞
