@@ -6,9 +6,14 @@ export default function CustomerLayout() {
 		<Tabs
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: '#f4511e',
+					backgroundColor: '#2da51f',
 				},
 				headerTintColor: '#fff',
+				tabBarStyle: {
+					backgroundColor: '#2da51f',
+				},
+				tabBarActiveTintColor: '#fff',
+				tabBarInactiveTintColor: '#042d00',
 				headerTitleStyle: {
 					fontWeight: 'bold',
 				},
@@ -19,8 +24,8 @@ export default function CustomerLayout() {
 				name="index"
 				options={{
 					title: 'Home',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="home" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="home" size={24} color={color} />
 					),
 				}}
 			/>
@@ -28,11 +33,11 @@ export default function CustomerLayout() {
 				name="inventory"
 				options={{
 					title: 'Inventory',
-					tabBarIcon: () => (
+					tabBarIcon: ({ color }) => (
 						<MaterialCommunityIcons
 							name="package-variant"
 							size={24}
-							color="black"
+							color={color}
 						/>
 					),
 				}}
@@ -41,8 +46,8 @@ export default function CustomerLayout() {
 				name="add-product"
 				options={{
 					title: 'Add Product',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="plus-thick" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="plus-thick" size={24} color={color} />
 					),
 				}}
 			/>
@@ -51,8 +56,8 @@ export default function CustomerLayout() {
 				name="profile"
 				options={{
 					title: 'Profile',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="account" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="account" size={24} color={color} />
 					),
 				}}
 			/>
@@ -60,8 +65,8 @@ export default function CustomerLayout() {
 				name="orders"
 				options={{
 					title: 'Orders',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="receipt" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="receipt" size={24} color={color} />
 					),
 				}}
 			/>

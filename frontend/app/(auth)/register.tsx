@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useSignUp } from '@clerk/clerk-expo';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 
 export default function SignUpScreen() {
 	const { isLoaded, signUp, setActive } = useSignUp();
@@ -76,19 +76,42 @@ export default function SignUpScreen() {
 						secureTextEntry={true}
 						onChangeText={password => setPassword(password)}
 					/>
-					<TouchableOpacity
-						onPress={() => setIsVendor(!isVendor)}
-						className={`w-full p-4 rounded-md mb-4 ${
-							isVendor ? 'bg-green-500' : 'bg-pink-700'
-						}`}
-					>
-						<Text className="text-center text-white font-semibold">
-							{isVendor ? 'Vendor' : 'Customer'}
-						</Text>
-					</TouchableOpacity>
+
+					{/* Role Selection */}
+					<View className="w-full flex-row justify-between bg-gray-200 p-2 rounded-md mb-4">
+						<TouchableOpacity
+							onPress={() => setIsVendor(false)}
+							className={`flex-1 p-4 rounded-md ${
+								!isVendor ? 'bg-green-500' : 'bg-gray-200'
+							}`}
+						>
+							<Text
+								className={`text-center font-semibold ${
+									!isVendor ? 'text-white' : 'text-gray-700'
+								}`}
+							>
+								Customer
+							</Text>
+						</TouchableOpacity>
+						<TouchableOpacity
+							onPress={() => setIsVendor(true)}
+							className={`flex-1 p-4 rounded-md ${
+								isVendor ? 'bg-green-500' : 'bg-gray-200'
+							}`}
+						>
+							<Text
+								className={`text-center font-semibold ${
+									isVendor ? 'text-white' : 'text-gray-700'
+								}`}
+							>
+								Vendor
+							</Text>
+						</TouchableOpacity>
+					</View>
+
 					<TouchableOpacity
 						onPress={onSignUpPress}
-						className="w-full bg-blue-500 p-4 rounded-md mb-4"
+						className="w-full bg-green-700 p-4 rounded-md mb-4"
 					>
 						<Text className="text-center text-white font-semibold">
 							Continue
@@ -97,7 +120,7 @@ export default function SignUpScreen() {
 					<View className="flex-row justify-center items-center space-x-2">
 						<Text className="text-gray-600">Already have an account?</Text>
 						<TouchableOpacity onPress={() => router.back()}>
-							<Text className="text-blue-500 font-semibold">Sign up</Text>
+							<Text className="text-green-700 font-semibold">Sign in</Text>
 						</TouchableOpacity>
 					</View>
 				</>
@@ -116,7 +139,7 @@ export default function SignUpScreen() {
 						onPress={onVerifyPress}
 						className="w-full bg-blue-500 p-4 rounded-md mb-4"
 					>
-						<Text>Verify</Text>
+						<Text className="text-center text-white font-semibold">Verify</Text>
 					</TouchableOpacity>
 				</>
 			)}

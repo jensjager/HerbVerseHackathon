@@ -24,13 +24,13 @@ export default function Orders() {
 	}
 
 	return (
-		<View className="flex-1 bg-white p-4">
+		<View className="flex-1 bg-green-100 p-4 ">
 			<Text className="text-2xl font-bold text-gray-800 mb-4">Orders</Text>
 			<FlatList
 				data={orders}
 				keyExtractor={item => item.id}
 				renderItem={({ item }) => (
-					<View className="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-100">
+					<View className="mb-4 p-4 border border-gray-300 rounded-lg bg-green-50">
 						<Text className="text-lg font-bold text-gray-800">
 							Order #{item.id}
 						</Text>

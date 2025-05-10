@@ -52,14 +52,14 @@ export default function Page() {
 			/>
 			<TouchableOpacity
 				onPress={onSignInPress}
-				className="w-full bg-blue-500 p-4 rounded-md mb-4"
+				className="w-full bg-green-700 p-4 rounded-md mb-4"
 			>
 				<Text className="text-center text-white font-semibold">Continue</Text>
 			</TouchableOpacity>
 			<View className="flex-row justify-center items-center space-x-2">
 				<Text className="text-gray-600">Don't have an account?</Text>
 				<TouchableOpacity onPress={() => router.navigate('/register')}>
-					<Text className="text-blue-500 font-semibold">Sign up</Text>
+					<Text className="text-green-700 font-semibold">Sign up</Text>
 				</TouchableOpacity>
 			</View>
 		</View>

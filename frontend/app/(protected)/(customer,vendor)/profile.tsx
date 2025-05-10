@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, Button, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { SignOutButton } from '@/components/SignOutButton';
 import { useUser } from '@clerk/clerk-expo';
 import { useRouter } from 'expo-router';
@@ -26,26 +26,39 @@ export default function Profile() {
 	};
 
 	return (
-		<View className="flex-1 p-4 bg-white">
-			<Text className="text-2xl font-bold mb-4 text-center">Profile</Text>
-			<View className="flex-row justify-between mb-2">
-				<Text className="text-lg font-bold">Username:</Text>
-				<Text className="text-lg text-gray-600">{user?.username || 'N/A'}</Text>
+		<View className="flex-1 p-6 bg-green-100">
+			{/* Profile Details */}
+			<View className="bg-white p-6 rounded-lg shadow-md mb-6">
+				<View className="flex-row justify-between mb-4">
+					<Text className="text-lg font-bold text-gray-800">Username:</Text>
+					<Text className="text-lg text-gray-600">
+						{user?.username || 'N/A'}
+					</Text>
+				</View>
+				<View className="flex-row justify-between mb-4">
+					<Text className="text-lg font-bold text-gray-800">Email:</Text>
+					<Text className="text-lg text-gray-600">
+						{user?.primaryEmailAddress?.emailAddress || 'N/A'}
+					</Text>
+				</View>
+				<View className="flex-row justify-between mb-4">
+					<Text className="text-lg font-bold text-gray-800">Type:</Text>
+					<Text className="text-lg text-gray-600">
+						{String(user?.unsafeMetadata?.role || 'customer')}
+					</Text>
+				</View>
 			</View>
-			<View className="flex-row justify-between mb-4">
-				<Text className="text-lg font-bold">Email:</Text>
-				<Text className="text-lg text-gray-600">
-					{user?.primaryEmailAddress?.emailAddress || 'N/A'}
-				</Text>
-			</View>
-			<View className="flex-row justify-between mb-4">
-				<Text className="text-lg font-bold">Type:</Text>
-				<Text className="text-lg text-gray-600">
-					{String(user?.unsafeMetadata?.role || 'customer')}
-				</Text>
-			</View>
-			<View className="space-y-4">
-				<Button title="Switch Role" onPress={toggleRole} color="#3B82F6" />
+
+			{/* Action Buttons */}
+			<View className="space-y-4 flex gap-6 items-end">
+				<TouchableOpacity
+					className="bg-green-600 p-4 rounded-lg shadow-md w-full"
+					onPress={toggleRole}
+				>
+					<Text className="text-center text-white font-bold text-lg">
+						Switch Role
+					</Text>
+				</TouchableOpacity>
 				<SignOutButton />
 			</View>
 		</View>

@@ -6,9 +6,14 @@ export default function CustomerLayout() {
 		<Tabs
 			screenOptions={{
 				headerStyle: {
-					backgroundColor: '#f4511e',
+					backgroundColor: '#2da51f',
 				},
 				headerTintColor: '#fff',
+				tabBarStyle: {
+					backgroundColor: '#2da51f',
+				},
+				tabBarActiveTintColor: '#fff',
+				tabBarInactiveTintColor: '#042d00',
 				headerTitleStyle: {
 					fontWeight: 'bold',
 				},
@@ -20,8 +25,8 @@ export default function CustomerLayout() {
 				name="index"
 				options={{
 					title: 'Home',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="home" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="home" size={24} color={color} />
 					),
 				}}
 			/>
@@ -29,8 +34,8 @@ export default function CustomerLayout() {
 				name="search"
 				options={{
 					title: 'Search',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="magnify" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="magnify" size={24} color={color} />
 					),
 				}}
 			/>
@@ -38,8 +43,8 @@ export default function CustomerLayout() {
 				name="profile"
 				options={{
 					title: 'Profile',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="account" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="account" size={24} color={color} />
 					),
 				}}
 			/>
@@ -47,8 +52,8 @@ export default function CustomerLayout() {
 				name="cart"
 				options={{
 					title: 'Cart',
-					tabBarIcon: () => (
-						<MaterialCommunityIcons name="cart" size={24} color="black" />
+					tabBarIcon: ({ color }) => (
+						<MaterialCommunityIcons name="cart" size={24} color={color} />
 					),
 				}}
 			/>

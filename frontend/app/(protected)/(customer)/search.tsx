@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-	View,
-	Text,
-	FlatList,
-	Image,
-	Button,
-	TouchableOpacity,
-} from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 import { fetchProducts, Product } from '@/api/products';
 import SearchBar from '@/components/SearchBar';
@@ -21,7 +14,6 @@ export default function Search() {
 		const loadProducts = async () => {
 			const data = await fetchProducts();
 			setProducts(data);
-			// Do not set filteredProducts initially
 		};
 		loadProducts();
 	}, []);
@@ -46,12 +38,15 @@ export default function Search() {
 	}, [searchQuery, products]);
 
 	return (
-		<View className="flex-1 bg-white p-4">
+		<View className="flex-1 bg-green-100 p-4">
+			{/* Search Bar */}
 			<SearchBar
 				placeholder="Search products..."
 				value={searchQuery}
 				onChangeText={setSearchQuery}
 			/>
+
+			{/* No Results Message */}
 			{filteredProducts.length === 0 && searchQuery.trim() !== '' ? (
 				<Text className="text-center text-gray-500 mt-4">
 					No products found.
@@ -63,24 +58,39 @@ export default function Search() {
 					keyExtractor={item => item.id}
 					renderItem={({ item }) => (
 						<TouchableOpacity
-							className="mb-4 p-4 border border-gray-300 rounded-lg bg-gray-100"
+							className="mb-4 p-4 border border-gray-300 rounded-lg bg-white shadow-md"
 							onPress={() => router.push(`/product/${item.id}`)}
 						>
+							{/* Product Image */}
 							<Image
 								source={{ uri: item.image }}
 								className="w-full h-40 mb-2 rounded-lg"
 							/>
-							<Text className="text-lg font-bold text-gray-800">
+
+							{/* Product Name */}
+							<Text className="text-lg font-bold text-green-800">
 								{item.name}
 							</Text>
-							<Text className="text-base text-gray-600">
+
+							{/* Product Price */}
+							<Text className="text-base text-green-600 font-semibold">
 								${item.price.toFixed(2)}
 							</Text>
-							<Text className="text-sm text-gray-500 mt-1">{item.seller}</Text>
-							<Button
-								title="View Details"
+
+							{/* Product Seller */}
+							<Text className="text-sm text-gray-500 mt-1">
+								Seller: {item.seller}
+							</Text>
+
+							{/* View Details Button */}
+							<TouchableOpacity
+								className="mt-4 bg-green-600 p-2 rounded-md"
 								onPress={() => router.push(`/product/${item.id}`)}
-							/>
+							>
+								<Text className="text-center text-white font-bold">
+									View Details
+								</Text>
+							</TouchableOpacity>
 						</TouchableOpacity>
 					)}
 				/>
